@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Create an Account</h1>
+            <p>Join to access personalized features</p>
+        </header>
+
+        {% if error %}
+            <div class="result-box" style="background-color: #fdecea; color: #a94442;">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST" class="form-section">
+            <label for="username">Username</label>
+            <input type="text" name="username" required placeholder="Choose a username">
+
+            <label for="email">Email</label>
+            <input type="email" name="email" required placeholder="you@example.com">
+
+            <label for="password">Password</label>
+            <input type="password" name="password" required placeholder="Create a password">
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p style="text-align:center; margin-top:15px;">
+            Already have an account?
+            <a href="{{ url_for('login_user') }}">Login here</a>
+        </p>
+
+        <footer>
+            <p>&copy; 2025 Real Estate Portal</p>
+        </footer>
+    </div>
+</body>
+</html>

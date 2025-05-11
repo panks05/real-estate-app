@@ -1,0 +1,1 @@
+{"numeric_features": ["sqft", "bath", "bhk"], "categorical_features": ["location"], "all_columns": ["location", "sqft", "bath", "bhk"]}

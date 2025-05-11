@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real Estate Price Estimator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+    <h1>🏠 Bangalore Home Price Estimator</h1>
+    <p>Predict your future investment</p>
+</header>
+
+{% if session.get('user') %}
+    <div style="text-align: right; margin-top: 10px;">
+        👋 Welcome, <strong>{{ session['user'] }}</strong> |
+        <a href="{{ url_for('my_searches') }}">My Saved Searches</a> |
+        <a href="{{ url_for('my_favorites') }}">My Favorites</a> |
+        <a href="{{ url_for('logout_user') }}">Logout</a>
+    </div>
+{% else %}
+    <div style="text-align: right; margin-top: 10px;">
+        <a href="{{ url_for('login_user') }}">Login</a> |
+        <a href="{{ url_for('signup') }}">Sign up</a>
+    </div>
+{% endif %}
+
+
+
+
+
+        <section class="form-section">
+            <label for="sqft">Area (in sqft)</label>
+            <input type="number" id="sqft" placeholder="Enter total area" min="300" required>
+
+            <label>BHK</label>
+            <div class="radio-group">
+                <label><input type="radio" name="bhk" value="1"> 1</label>
+                <label><input type="radio" name="bhk" value="2" checked> 2</label>
+                <label><input type="radio" name="bhk" value="3"> 3</label>
+                <label><input type="radio" name="bhk" value="4"> 4</label>
+                <label><input type="radio" name="bhk" value="5"> 5</label>
+            </div>
+
+            <label>Bathrooms</label>
+            <div class="radio-group">
+                <label><input type="radio" name="bath" value="1"> 1</label>
+                <label><input type="radio" name="bath" value="2" checked> 2</label>
+                <label><input type="radio" name="bath" value="3"> 3</label>
+                <label><input type="radio" name="bath" value="4"> 4</label>
+                <label><input type="radio" name="bath" value="5"> 5</label>
+            </div>
+
+            <label for="location">Select Location</label>
+            <select id="location">
+                {% for loc in locations %}
+                    <option value="{{ loc }}">{{ loc }}</option>
+                {% endfor %}
+            </select>
+
+            <button onclick="onEstimateClick()">Estimate Price</button>
+            <button onclick="onSaveSearch()" style="background-color: #28a745;">💾 Save This Search</button>
+            <p style="text-align: center; margin-top: 20px;">
+    👉      <a href="{{ url_for('properties_page') }}">View Available Properties</a>
+            </p>
+
+            <div id="result" class="result-box"></div>
+            <div id="propertyList" style="margin-top: 30px;"></div>
+
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Real Estate Analytics</p>
+        </footer>
+    </div>
+</body>
+</html>

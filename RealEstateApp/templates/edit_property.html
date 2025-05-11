@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Property</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h3>Edit Property (ID: {{ property.id }})</h3>
+    <form method="POST">
+        <div class="mb-3">
+            <label>Location</label>
+            <input type="text" name="location" class="form-control" value="{{ property.location }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Square Feet</label>
+            <input type="number" name="sqft" class="form-control" value="{{ property.sqft }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Bathrooms</label>
+            <input type="number" name="bath" class="form-control" value="{{ property.bath }}" required>
+        </div>
+        <div class="mb-3">
+            <label>BHK</label>
+            <input type="number" name="bhk" class="form-control" value="{{ property.bhk }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Price (in Lakhs)</label>
+            <input type="number" name="price" class="form-control" value="{{ property.price }}" required>
+        </div>
+        <button class="btn btn-primary">Save Changes</button>
+        <a href="/admin" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

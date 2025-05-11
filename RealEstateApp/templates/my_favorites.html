@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Favorite Properties</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>❤️ My Favorite Properties</h1>
+            <p>Here are the properties you've bookmarked</p>
+        </header>
+
+        {% if favorites %}
+            <table border="1" cellpadding="8" cellspacing="0" style="width:100%; margin-top:15px;">
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Sqft</th>
+                        <th>BHK</th>
+                        <th>Bath</th>
+                        <th>Price (Lakhs)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in favorites %}
+                    <tr>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[5] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="margin-top:20px;">You haven't favorited any properties yet.</p>
+        {% endif %}
+
+        <p style="margin-top: 20px;">
+            <a href="{{ url_for('index') }}">← Back to Estimator</a>
+        </p>
+
+        <footer>
+            <p>&copy; 2025 Real Estate Portal</p>
+        </footer>
+    </div>
+</body>
+</html>

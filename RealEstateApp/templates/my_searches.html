@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Saved Searches</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📂 My Saved Searches</h1>
+            <p>Filters you've saved so far</p>
+        </header>
+
+        {% if searches %}
+            <table border="1" cellpadding="8" cellspacing="0" style="width:100%; margin-top:15px;">
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>BHK</th>
+                        <th>Bath</th>
+                        <th>Min Sqft</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in searches %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="margin-top:20px;">You haven't saved any searches yet.</p>
+        {% endif %}
+
+        <p style="margin-top: 20px;">
+            <a href="{{ url_for('index') }}">← Back to Estimator</a>
+        </p>
+
+        <footer>
+            <p>&copy; 2025 Real Estate Portal</p>
+        </footer>
+    </div>
+</body>
+</html>

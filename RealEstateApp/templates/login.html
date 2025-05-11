@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login - Real Estate Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Admin Login</h1>
+            <p>Access the admin dashboard</p>
+        </header>
+    {% if session.get('user') %}
+        <p>Welcome, {{ session['user'] }}! <a href="/logout-user">Logout</a></p>
+        {% else %}
+        <p><a href="/login-user">Login</a> or <a href="/signup">Signup</a> for more features.</p>
+    {% endif %}
+
+        {% if error %}
+            <div class="result-box" style="background-color:#fdd; color:#a00;">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST" class="form-section">
+            <label>Username</label>
+            <input type="text" name="username" required placeholder="admin">
+
+            <label>Password</label>
+            <input type="password" name="password" required placeholder="admin123">
+
+            <button type="submit">Login</button>
+        </form>
+
+        <footer>
+            <p>&copy; 2025 Real Estate Admin Panel</p>
+        </footer>
+    </div>
+</body>
+</html>
